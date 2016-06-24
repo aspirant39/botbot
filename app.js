@@ -1,24 +1,33 @@
-var restify = require('restify');
-var builder = require('botbuilder');
+const fs = require('fs');
+const restify = require('restify');
+const skype = require('skype-sdk');
 
-// Get secrets from server environment
-var botConnectorOptions = { 
-    appId: process.env.BOTFRAMEWORK_APPID, 
-    appSecret: process.env.BOTFRAMEWORK_APPSECRET 
-};
-
-var bot = new builder.BotConnectorBot(botConnectorOptions);
-bot.add('/', function (session) {
-    
-    //respond with user's message
-    session.send("You said " + session.message.text);
+const botService = new skype.BotService({
+    messaging: {
+        botId: '',
+        serverUrl : 'https://apis.skype.com',
+        requestTimeout : 15000,
+        appId:process.env.BOTFRAMEWORK_APPID,
+        appSecret:process.env.BOTFRAMEWORK_APPSECRET
+    }
 });
 
-// Setup Restify Server
-var server = restify.createServer();
-
-// Handle Bot Framework messages
-server.post('/api/messages', bot.verifyBotFramework(), bot.listen());
-server.listen(process.env.port || 8080, function () {
-    console.log('%s listening to %s', server.name, server.url); 
+botService.on('contactAdded', (bot, data) => {
+    console.log("bot replay");
+    bot.reply('Hello ${data.fromDisplayName}!', true);
 });
+
+botService.on('personalMessage', (bot, data) => {
+    console.log("person replay");
+    bot.reply('Hey ${data.from}. Thank you for your message: "${data.content}".', true);
+});
+
+const server = restify.createServer();
+
+server.use(skype.ensureHttps(true));
+server.use(skype.verifySkypeCert({}));
+
+server.post('/api/messages', skype.messagingHandler(botService));
+const port = process.env.PORT || 8080;
+server.listen(port);
+console.log('Listening for incoming requests on port ' + port);
