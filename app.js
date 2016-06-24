@@ -26,7 +26,10 @@ const server = restify.createServer();
 
 server.use(skype.ensureHttps(true));
 server.use(skype.verifySkypeCert({}));
-
+server.get(/.*/, restify.serveStatic({
+	'directory': '.',
+	'default': 'index.html'
+}));
 server.post('/api/messages', skype.messagingHandler(botService));
 const port = process.env.PORT || 8080;
 server.listen(port);
