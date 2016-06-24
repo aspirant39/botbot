@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "botbuilder": "^1.0.1"
+    "botbuilder": "^1.0.1",
     "restify": "^4.0.4"
   }
 }
