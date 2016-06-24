@@ -13,16 +13,6 @@ bot.add('/', function (session) {
     //respond with user's message
     session.send("You said " + session.message.text);
 });
-bot.on('contactAdded', (bot, data) => {
-    bot.reply(`Hello ${data.fromDisplayName}!`, true);
-});
-
-bot.on('personalMessage', (bot, data) => {
-    bot.reply(`Hey ${data.from}. Thank you for your message: "${data.content}".`, true);
-});
-bot.on('groupMessage', (bot, data) => {
-    bot.reply(`Hey ${data.from}. Thank you for your message: "${data.content}".`, true);
-});
 
 // Setup Restify Server
 var server = restify.createServer();
