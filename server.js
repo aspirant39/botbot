@@ -51,6 +51,12 @@ intents.matches(/^Author?/i,[
     }
 ]);
 
+intents.matches(/^Version?/i,[
+    function(session,results){
+       session.send('Version 007(facepalm)');
+    }
+]);
+
 intents.onDefault([
     function (session, args, next) {
         if (!session.userData.name) {
