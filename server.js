@@ -45,6 +45,12 @@ intents.matches(/^Kung ang light ay ilaw, ano naman ang lightning?/i,[
     }
 ]);
 
+intents.matches(/^Author?/i,[
+    function(session,results){
+       session.send('Si kuan ay! Si Ralph gud (facepalm)');
+    }
+]);
+
 intents.onDefault([
     function (session, args, next) {
         if (!session.userData.name) {
