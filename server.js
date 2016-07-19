@@ -39,6 +39,11 @@ intents.matches(/^Ano sa Tagalog ang teeth?/i,[
        session.send('eh di Utong hahaha');
     }
 ]);
+intents.matches(/^Kung ang light ay ilaw, ano naman ang lightning??/i,[
+    function(session,results){
+       session.send('eh di Utong Umiilaw hahaha');
+    }
+]);
 
 intents.onDefault([
     function (session, args, next) {
