@@ -26,7 +26,7 @@ server.post('/api/messages', connector.listen());
 var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/^Start, [
+intents.matches(/^Start/i, [
     function (session) {
         session.beginDialog('/menu');
     }
@@ -34,7 +34,7 @@ intents.matches(/^Start, [
 
 bot.dialog('/menu', [
     function (session) {
-        builder.Prompts.choice(session, "What would you like me to do?", "promts|list|(quit)");
+        builder.Prompts.choice(session, "What would you like me to do?", "prompts|list|(quit)");
     },
     function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
