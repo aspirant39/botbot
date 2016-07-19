@@ -23,62 +23,24 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-var intents = new builder.IntentDialog();
-bot.dialog('/', intents);
-
-intents.matches(/^change name/i, [
+bot.dialog('/', [
     function (session) {
-        session.beginDialog('/profile');
+        // Send a greeting and start the menu.
+        var card = new builder.HeroCard(session)
+            .title("Microsoft Bot Framework")
+            .text("Your bots - wherever your users are talking.")
+            .images([
+                 builder.CardImage.create(session, "http://docs.botframework.com/images/demo_bot_image.png")
+            ]);
+        var msg = new builder.Message(session).attachments([card]);
+        session.send(msg);
+        session.send("Hi... I'm the Microsoft Bot Framework demo bot for Skype. I can show you everything you can use our Bot Builder SDK to do on Skype.");
+        session.beginDialog('/menu');
     },
     function (session, results) {
-        session.send('Ok... Changed your name to %s', session.userData.name);
-    }
-]);
-intents.matches(/^Ano sa Tagalog ang teeth?/i,[
-    function(session,results){
-       if(results.response=='utong'){
-       session.send('bright man diay ka! ikaw nalang pag ako (facepalm)');
-       }else{
-       session.send('eh di Utong hahaha (facepalm)');}
-    }
-]);
-intents.matches(/^Kung ang light ay ilaw, ano naman ang lightning?/i,[
-    function(session,results){
-       session.send('eh di Umiilaw hahaha(headbang)');
+        // Always say goodbye
+        session.send("Ok... See you later!");
     }
 ]);
 
-intents.matches(/^Author?/i,[
-    function(session,results){
-       session.send('Si kuan ay! Si Ralph gud (facepalm)');
-    }
-]);
 
-intents.matches(/^Version?/i,[
-    function(session,results){
-       session.send('Version 007(facepalm)');
-    }
-]);
-
-intents.onDefault([
-    function (session, args, next) {
-        if (!session.userData.name) {
-            session.beginDialog('/profile');
-        } else {
-            next();
-        }
-    },
-    function (session, results) {
-        session.send('Hello %s!', session.userData.name);
-    }
-]);
-
-bot.dialog('/profile', [
-    function (session) {
-        builder.Prompts.text(session, 'Hi! What is your name?');
-    },
-    function (session, results) {
-        session.userData.name = results.response;
-        session.endDialog();
-    }
-]);
