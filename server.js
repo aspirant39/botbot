@@ -23,7 +23,7 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-bot.dialog('/', [
+bot.dialog('/^start', [
     function (session) {
         // Send a greeting and start the menu.
         var card = new builder.HeroCard(session)
