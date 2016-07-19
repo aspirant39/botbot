@@ -34,6 +34,11 @@ intents.matches(/^change name/i, [
         session.send('Ok... Changed your name to %s', session.userData.name);
     }
 ]);
+intents.matches(/^Ano sa Tagalog ang teeth?/i,[
+    function(session,results){
+       session.send('eh di Utong hahaha');
+    }
+]);
 
 intents.onDefault([
     function (session, args, next) {
