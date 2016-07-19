@@ -31,14 +31,14 @@ bot.use({
    dialog: function(session,next){
       if(!session.userData.firstRun){
          seesion.userData.firstRun=true;
-         session.beginDialog('/menu');
+         session.beginDialog('/firstRun');
       }
       else{
          next();
       }
    }
 });
-bot.dialog('/menu', [
+bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.choice(session, "What would you like me to do?", "prompts|list|(quit)");
     },
@@ -53,7 +53,7 @@ bot.dialog('/menu', [
     },
     function (session, results) {
         // The menu runs a loop until the user chooses to (quit).
-        session.replaceDialog('/menu');
+        session.replaceDialog('/firstRun');
     }
 ]);
 
