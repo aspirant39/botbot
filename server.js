@@ -26,7 +26,7 @@ server.post('/api/messages', connector.listen());
 var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/^Start/i, [
+intents.matches(/^Start, [
     function (session) {
         session.beginDialog('/menu');
     }
