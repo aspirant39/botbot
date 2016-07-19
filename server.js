@@ -34,7 +34,7 @@ intents.matches(/^Start/i, [
 
 bot.dialog('/menu', [
     function (session) {
-        builder.Prompts.choice(session, "What would you like me to do?", "Ask|Answer|(quit)");
+        builder.Prompts.choice(session, "What would you like me to do?", "promts|list|(quit)");
     },
     function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
