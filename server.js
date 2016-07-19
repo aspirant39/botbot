@@ -34,7 +34,7 @@ intents.matches(/^Start/i, [
 
 bot.dialog('/menu', [
     function (session) {
-        builder.Prompts.choice(session, "What would you like me to do?", "ask|answer|(quit)");
+        builder.Prompts.choice(session, "What would you like me to do?", "Ask|Answer|(quit)");
     },
     function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
@@ -51,7 +51,7 @@ bot.dialog('/menu', [
     }
 ]);
 
-bot.dialog('/ask', [
+bot.dialog('/Ask', [
     function (session) {
         session.send("Our Bot Builder SDK has a rich set of built-in prompts that simplify asking the user a series of questions. This demo will walk you through using each prompt. Just follow the prompts and you can quit at any time by saying 'cancel'.");
         builder.Prompts.text(session, "Prompts.text()\n\nEnter some text and I'll say it back.");
@@ -119,7 +119,7 @@ bot.dialog('/ask', [
     }
 ]);
 
-bot.dialog('/answer', [
+bot.dialog('/Answer', [
     function (session) {
         session.send("You can easily send pictures to a user...");
         var msg = new builder.Message(session)
