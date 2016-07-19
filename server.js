@@ -36,7 +36,7 @@ intents.matches(/^change name/i, [
 ]);
 intents.matches(/^Ano sa Tagalog ang teeth?/i,[
     function(session,results){
-       session.send('eh di Utong hahaha');
+       session.send('eh di Utong hahaha (facepalm)');
     }
 ]);
 intents.matches(/^Kung ang light ay ilaw, ano naman ang lightning?/i,[
