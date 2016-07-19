@@ -23,15 +23,21 @@ server.post('/api/messages', connector.listen());
 // Bots Dialogs
 //=========================================================
 
-var intents = new builder.IntentDialog();
-bot.dialog('/', intents);
 
-intents.matches(/^Start/i, [
-    function (session) {
-        session.beginDialog('/menu');
-    }
-]);
-
+bot.dialog('/',function(session){
+   session.send("Hi %s, ",session.userData.name);
+});
+bot.use({
+   dialog: function(session,next){
+      if(!session.userData.firstRun){
+         seesion.userData.firstRun=true;
+         session.beginDialog('/menu');
+      }
+      else{
+         next();
+      }
+   }
+})
 bot.dialog('/menu', [
     function (session) {
         builder.Prompts.choice(session, "What would you like me to do?", "prompts|list|(quit)");
