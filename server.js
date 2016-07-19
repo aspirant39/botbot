@@ -41,7 +41,7 @@ intents.matches(/^Ano sa Tagalog ang teeth?/i,[
 ]);
 intents.matches(/^Kung ang light ay ilaw, ano naman ang lightning?/i,[
     function(session,results){
-       session.send('eh di Umiilaw hahaha');
+       session.send('eh di Umiilaw hahaha(headbang)');
     }
 ]);
 
