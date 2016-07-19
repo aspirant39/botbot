@@ -37,7 +37,7 @@ bot.use({
          next();
       }
    }
-})
+});
 bot.dialog('/menu', [
     function (session) {
         builder.Prompts.choice(session, "What would you like me to do?", "prompts|list|(quit)");
