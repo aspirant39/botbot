@@ -84,7 +84,7 @@ bot.dialog('/Ask', [
         if (results && results.response) {
             if (results.response=='utong'){
                session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
-               builder.Prompts.text(session, "Prompts.number()\n\nKung ang light ay ilaw, ano naman ang lightning?");
+               builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
             else{
                session.send("taka lang man ka hahaha!(facepalm) utong ang tama na answer ui")
@@ -110,6 +110,13 @@ bot.dialog('/Ask', [
             session.endDialog("You canceled.");
         }
     }
+]);
+bot.dialog('/Answer', [
+  intents.matches(/^Author?/i,[
+    function(session,results){
+       session.send('Si kuan ay! Si Ralph gud (facepalm)');
+    }
+]);
 ]);
 var fs = require('fs');
 var request = require('request');
