@@ -116,14 +116,14 @@ bot.dialog('/Answer', [
     function (session) {
         session.send("Ask me anything. Just follow the prompts and you can quit at any time by saying 'cancel'.");
         builder.Prompts.text(session, "\n\nwhat would you like to ask me?");
-    }
+    },
     function (session, results) {
         if (results && results.response) {
             if(results.response=='Author'){
                  session.send("Si kuan ay! Si Ralph gud (facepalm)");
               
             }
-            else if(results.response=='Version'){
+            elseif(results.response=='Version'){
                  session.send("Version 007(facepalm)'");
                 
             }
