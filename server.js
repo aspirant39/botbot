@@ -52,21 +52,21 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session, "What would you like me to do?", ["prompts|picture|(quit)"]);
+       builder.Prompts.choice(session, "What would you like me to do?", ["Ask|Answer|(quit)"]);
    },
    function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
             switch (results.response.entity) {
-                case 'prompts':
-                    session.beginDialog('/prompts');
+                case 'Ask':
+                    session.beginDialog('/Ask');
                     break;
-               case 'picture':
-                    session.beginDialog('/picture');
+               case 'Answer':
+                    session.beginDialog('/Answer');
                     break; 
 
             }
         } else {
-          builder.Prompts.text(session, 'Hi! What is your name?');
+         
             session.endDialog();
         }
     },
@@ -75,7 +75,73 @@ bot.dialog('/menu', [
         session.replaceDialog('/menu');
        }
 ]);
-
+bot.dialog('/Ask', [
+    function (session) {
+        session.send("Ask me anything . Just follow the prompts and you can quit at any time by saying 'cancel'.");
+        builder.Prompts.text(session, "Prompts.text()\n\nEnter some text and I'll say it back.");
+    },
+    function (session, results) {
+        if (results && results.response) {
+            session.send("You entered '%s'", results.response);
+            builder.Prompts.number(session, "Prompts.number()\n\nNow enter a number.");
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.response) {
+            session.send("You entered '%s'", results.response);
+            session.send("Bot Builder includes a rich choice() prompt that lets you offer a user a list choices to pick from. On Facebook these choices by default surface using buttons if there are 3 or less choices. If there are more than 3 choices a numbered list will be used but you can specify the exact type of list to show using the ListStyle property.");
+            builder.Prompts.choice(session, "Prompts.choice()\n\nChoose a list style (the default is auto.)", "auto|inline|list|button|none");
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.response) {
+            var style = builder.ListStyle[results.response.entity];
+            builder.Prompts.choice(session, "Prompts.choice()\n\nNow pick an option.", "option A|option B|option C", { listStyle: style });
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.response) {
+            session.send("You chose '%s'", results.response.entity);
+            builder.Prompts.confirm(session, "Prompts.confirm()\n\nSimple yes/no questions are possible. Answer yes or no now.");
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.resumed == builder.ResumeReason.completed) {
+            session.send("You chose '%s'", results.response ? 'yes' : 'no');
+            builder.Prompts.time(session, "Prompts.time()\n\nThe framework can recognize a range of times expressed as natural language. Enter a time like 'Monday at 7am' and I'll show you the JSON we return.");
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.response) {
+            session.send("Recognized Entity: %s", JSON.stringify(results.response));
+            builder.Prompts.attachment(session, "Prompts.attachment()\n\nYour bot can wait on the user to upload an image or video. Send me an image and I'll send it back to you.");
+        } else {
+            session.endDialog("You canceled.");
+        }
+    },
+    function (session, results) {
+        if (results && results.response) {
+            var msg = new builder.Message(session)
+                .ntext("I got %d attachment.", "I got %d attachments.", results.response.length);
+            results.response.forEach(function (attachment) {
+                msg.addAttachment(attachment);    
+            });
+            session.endDialog(msg);
+        } else {
+            session.endDialog("You canceled.");
+        }
+    }
+]);
 var fs = require('fs');
 var request = require('request');
 
