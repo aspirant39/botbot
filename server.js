@@ -51,16 +51,16 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session, "What would you like me to do?", "Ask|Answer|(quit)");
+       builder.Prompts.choice(session, "What would you like me to do?", "prompts|picture|(quit)");
    },
    function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
             switch (results.response.entity) {
                 case 'Ask':
-                    session.beginDialog('/Ask');
+                    session.beginDialog('/prompts');
                     break;
                case 'Asnwer':
-                    session.beginDialog('/Answer');
+                    session.beginDialog('/picture');
                     break; 
 
             }
