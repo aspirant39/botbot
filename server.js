@@ -19,8 +19,7 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
-bot.use(downloadFile(connector));
+
 var intents = new builder.IntentDialog();
 
 bot.dialog('/', intents);
