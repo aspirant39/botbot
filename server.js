@@ -42,7 +42,7 @@ intents.onDefault([
 
 bot.dialog('/profile', [
     function (session) {
-        builder.Prompts.text(session, 'Hi! What is your name?');
+        builder.Prompts.text(session, 'Hi! before anything else, What is your name?');
     },
     function (session, results) {
         session.userData.name = results.response;
@@ -77,13 +77,20 @@ bot.dialog('/menu', [
 ]);
 bot.dialog('/Ask', [
     function (session) {
-        session.send("Ask me anything . Just follow the prompts and you can quit at any time by saying 'cancel'.");
-        builder.Prompts.text(session, "Prompts.text()\n\nEnter some text and I'll say it back.");
+        session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'.");
+        builder.Prompts.text(session, "Prompts.text()\n\nAno sa Tagalog ang teeth?");
     },
     function (session, results) {
         if (results && results.response) {
-            session.send("You entered '%s'", results.response);
-            builder.Prompts.number(session, "Prompts.number()\n\nNow enter a number.");
+            if (results.response=='utong'){
+               session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
+               builder.Prompts.text(session, "Prompts.number()\n\nKung ang light ay ilaw, ano naman ang lightning?");
+            }
+            else{
+               session.send("taka lang man ka hahaha!(facepalm) '%s' ang tama na answer ui",results.response)
+               builder.Prompts.text(session, "Prompts.number()\n\nKung ang light ay ilaw, ano naman ang lightning?");
+            }
+           
         } else {
             session.endDialog("You canceled.");
         }
