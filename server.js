@@ -59,7 +59,7 @@ bot.dialog('/menu', [
                     session.beginDialog('/Ask');
                     break;
                case 'Asnwer':
-                    session.beginDialog('Answer');
+                    session.beginDialog('/Answer');
                     break; 
 
             }
