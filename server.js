@@ -66,7 +66,7 @@ bot.on('deleteUserData', function (message) {
 });
 
 var intents = new builder.IntentDialog();
-bot.endConversationAction('goodbye', 'Goodbye :)', { matches: /^quit/i });
+
 
 bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
 bot.use(downloadFile(connector));
