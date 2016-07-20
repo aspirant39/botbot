@@ -21,7 +21,8 @@ server.post('/api/messages', connector.listen());
 
 
 var intents = new builder.IntentDialog();
-
+bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
+bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
 intents.onDefault([
@@ -74,3 +75,30 @@ bot.dialog('/menu', [
         session.replaceDialog('/menu');
        }
 ]);
+
+var fs = require('fs');
+var request = require('request');
+
+function downloadFile(connector) {
+   return {
+        dialog: function (session, next) {
+            session.downloadFile = function downloadFile(url, filename, cb) {
+                connector.getAccessToken(function (err, token) {
+                   if (!err && token) {
+                       var headers = {};
+                        if (url.indexOf('skype.com/')) {
+                            headers['Authorization'] = 'Bearer ' + token;
+                        }
+                        request({
+                            url: url,
+                            headers: headers
+                        }).pipe(fs.createWriteStream(filename)).on('close', cb);
+                    } else {
+                        cb(err);
+                    }
+                });
+            }
+            next();
+        }
+    };
+}
