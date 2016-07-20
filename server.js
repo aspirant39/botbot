@@ -27,6 +27,7 @@ bot.dialog('/', intents);
 
 intents.onDefault([
     function (session, args, next) {
+       session.send("type and Ask|Answer|cancel|quit");
         if (!session.userData.name) {
             session.beginDialog('/profile');
         } else {
