@@ -21,6 +21,8 @@ server.post('/api/messages', connector.listen());
 
 
 var intents = new builder.IntentDialog();
+bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
+bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
 intents.onDefault([
