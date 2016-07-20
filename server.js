@@ -52,7 +52,7 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session, "What would you like me to do?", "[prompts|picture|(quit)"]);
+       builder.Prompts.choice(session, "What would you like me to do?", ["prompts|picture|(quit)"]);
    },
    function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
