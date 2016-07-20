@@ -123,7 +123,7 @@ bot.dialog('/Answer', [
                  session.send("Si kuan ay! Si Ralph gud (facepalm)");
               
             }
-            elseif(results.response=='Version'){
+            else if(results.response=='Version'){
                  session.send("Version 007(facepalm)'");
                 
             }
