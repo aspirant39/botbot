@@ -1,4 +1,4 @@
-var builder = require('botbuilder');
+var builder = require('../../core/');
 var restify = require('restify');
 
 //=========================================================
