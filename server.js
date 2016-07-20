@@ -111,13 +111,13 @@ bot.dialog('/Ask', [
         }
     }
 ]);
-bot.dialog('/Answer', [
+
   intents.matches(/^Author?/i,[
     function(session,results){
        session.send('Si kuan ay! Si Ralph gud (facepalm)');
     }
 ]);
-]);
+
 var fs = require('fs');
 var request = require('request');
 
