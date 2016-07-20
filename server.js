@@ -21,7 +21,7 @@ server.post('/api/messages', connector.listen());
 
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^reset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
@@ -57,16 +57,16 @@ bot.dialog('/menu', [
    function (session, results) {
         if (results.response && results.response.entity != '(quit)') {
             switch (results.response.entity) {
-                case 'Ask':
+                case 'prompts':
                     session.beginDialog('/prompts');
                     break;
-               case 'Asnwer':
+               case 'picture':
                     session.beginDialog('/picture');
                     break; 
 
             }
         } else {
-            // Exit the menu
+          builder.Prompts.text(session, 'Hi! What is your name?');
             session.endDialog();
         }
     },
