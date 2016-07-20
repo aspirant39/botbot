@@ -124,4 +124,4 @@ bot.dialog('/menu', [
         // The menu runs a loop until the user chooses to (quit).
         session.replaceDialog('/menu');
        }
-])
+]);
