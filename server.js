@@ -118,7 +118,7 @@ bot.dialog('/menu', [
             session.endDialog();
         } 
         else {
-           
+            session.replaceDialog('/menu');
         }
     },
     function (session, results) {
@@ -145,6 +145,9 @@ bot.dialog('/Ask', [
         } else if(resutls.response=='cancel') {
             session.endDialog("You canceled.");
         }
+         else {
+            session.replaceDialog('/Ask');
+        }
     },
     function (session, results) {
         if (results && results.response) {
@@ -157,8 +160,11 @@ bot.dialog('/Ask', [
                 
             }
             
-        } else if(resutls.response=='cancel') {
+        } else if(results.response=='cancel') {
             session.endDialog("You canceled.");
+        }
+         else {
+            session.replaceDialog('/Ask');
         }
     },
      function (session, results) {
@@ -186,8 +192,11 @@ bot.dialog('/Answer', [
                session.send("Ambot lang ui(facepalm)");
             }
             
-        } else {
+        } else if(results.response=='cancel') {
             session.endDialog("You canceled.");
+        }
+         else {
+            session.replaceDialog('/Answer');
         }
     },
     function (session, results) {
