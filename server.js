@@ -142,7 +142,7 @@ bot.dialog('/Ask', [
                builder.Prompts.text(session, "Prompts.number()\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
            
-        } else {
+        } else if(resutls.response=='cancel') {
             session.endDialog("You canceled.");
         }
     },
@@ -157,10 +157,14 @@ bot.dialog('/Ask', [
                 
             }
             
-        } else {
+        } else if(resutls.response=='cancel') {
             session.endDialog("You canceled.");
         }
-    }
+    },
+     function (session, results) {
+        // The menu runs a loop until the user chooses to (quit).
+        session.replaceDialog('/Ask');
+       }
 ]);
 
 bot.dialog('/Answer', [
@@ -185,7 +189,11 @@ bot.dialog('/Answer', [
         } else {
             session.endDialog("You canceled.");
         }
-    }
+    },
+    function (session, results) {
+        // The menu runs a loop until the user chooses to (quit).
+        session.replaceDialog('/Answer');
+       }
 ]);
 
 var fs = require('fs');
