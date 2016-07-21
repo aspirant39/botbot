@@ -74,7 +74,7 @@ bot.dialog('/', intents);
 
 intents.onDefault([
     function (session, args, next) {
-       session.send("type and Ask | Answer | cancel | quit");
+       session.send("Type and send - Ask | Answer | cancel | quit");
         if (!session.userData.name) {
             session.beginDialog('/profile');
         } else {
@@ -113,7 +113,7 @@ bot.dialog('/menu', [
                     break; 
 
             }
-        }else if(results.response='quit'){
+        }else if(results.response=="quit"){
             session.send("good bye! (wave)")
             session.endDialog();
         } 
@@ -129,20 +129,20 @@ bot.dialog('/menu', [
 bot.dialog('/Ask', [
     function (session) {
         session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'.");
-        builder.Prompts.text(session, "Prompts.text()\n\nAno sa Tagalog ang teeth?");
+        builder.Prompts.text(session, "\n\nAno sa Tagalog ang teeth?");
     },
     function (session, results) {
         if (results && results.response) {
-            if (results.response=='utong'){
+            if (results.response=="utong"){
                session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
             else{
                session.send("taka lang man ka hahaha!(facepalm) utong ang tama na answer ui")
-               builder.Prompts.text(session, "Prompts.number()\n\nKung ang light ay ilaw, ano naman ang lightning?");
+               builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
            
-        } else if(resutls.response=='cancel') {
+        } else if(resutls.response=="cancel") {
             session.endDialog("You canceled.");
         }
          else {
@@ -151,7 +151,7 @@ bot.dialog('/Ask', [
     },
     function (session, results) {
         if (results && results.response) {
-            if(results.response=='umiilaw'){
+            if(results.response=="umiilaw"){
                session.send("tsamba! hahahah")
               
             }
@@ -160,7 +160,7 @@ bot.dialog('/Ask', [
                 
             }
             
-        } else if(results.response=='cancel') {
+        } else if(results.response=="cancel") {
             session.endDialog("You canceled.");
         }
          else {
@@ -180,19 +180,19 @@ bot.dialog('/Answer', [
     },
     function (session, results) {
         if (results && results.response) {
-            if(results.response=='Author'){
+            if(results.response=="Author"){
                  session.send("Si kuan ay! Si Ralph gud (facepalm)");
               
             }
-            else if(results.response=='Version'){
-                 session.send("Version 007(facepalm)'");
+            else if(results.response=="Version"){
+                 session.send("Version 007(facepalm)");
                 
             }
             else{
                session.send("Ambot lang ui(facepalm)");
             }
             
-        } else if(results.response=='cancel') {
+        } else if(results.response=="cancel") {
             session.endDialog("You canceled.");
         }
          else {
