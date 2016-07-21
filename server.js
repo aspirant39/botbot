@@ -113,12 +113,12 @@ bot.dialog('/menu', [
                     break; 
 
             }
-        }else if(results.response=="quit"){
+        }else if(results.response.entity=='quit'){
             session.send("good bye! (wave)")
             session.endDialog();
         } 
         else {
-            session.replaceDialog('/menu');
+            
         }
     },
     function (session, results) {
@@ -133,7 +133,7 @@ bot.dialog('/Ask', [
     },
     function (session, results) {
         if (results && results.response) {
-            if (results.response=="utong"){
+            if (results.response.entity=='utong'){
                session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
@@ -142,11 +142,11 @@ bot.dialog('/Ask', [
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
            
-        } else if(resutls.response=="cancel") {
+        } else if(resutls.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
-            session.replaceDialog('/Ask');
+         
         }
     },
     function (session, results) {
@@ -160,11 +160,11 @@ bot.dialog('/Ask', [
                 
             }
             
-        } else if(results.response=="cancel") {
+        } else if(results.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
-            session.replaceDialog('/Ask');
+            
         }
     },
      function (session, results) {
@@ -180,11 +180,11 @@ bot.dialog('/Answer', [
     },
     function (session, results) {
         if (results && results.response) {
-            if(results.response=="Author"){
+            if(results.response.enity=='Author'){
                  session.send("Si kuan ay! Si Ralph gud (facepalm)");
               
             }
-            else if(results.response=="Version"){
+            else if(results.response.entity=='Version'){
                  session.send("Version 007(facepalm)");
                 
             }
@@ -192,11 +192,11 @@ bot.dialog('/Answer', [
                session.send("Ambot lang ui(facepalm)");
             }
             
-        } else if(results.response=="cancel") {
+        } else if(results.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
-            session.replaceDialog('/Answer');
+            
         }
     },
     function (session, results) {
