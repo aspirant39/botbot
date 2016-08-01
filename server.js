@@ -59,7 +59,9 @@ bot.dialog('/menu', [
    function (session, results) {
       if(results.response.entity.length>7){
       temp=results.response.entity.slice(7,results.response.entity.length-1);
-      temp=temp.trim();}
+      temp=temp.trim();
+      session.send('Hello %s', results.response.entity.indexof("@botbot"));
+      }
       else{
          temp=results.response.entity;
       }
