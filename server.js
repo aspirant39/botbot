@@ -57,8 +57,12 @@ bot.dialog('/menu', [
       
    },
    function (session, results) {
-      temp=results.response.entity.slice(7,results.response.entity.length-1);
-      temp=temp.trim();
+      if(results.response.entity.length>7){
+      temp=results.response.entity.slice(6,results.response.entity.length-1);
+      temp=temp.trim();}
+      else{
+         temp=results.response.entity;
+      }
         if (results.response && temp != 'quit') {
             switch (temp) {
                 case 'Ask':
