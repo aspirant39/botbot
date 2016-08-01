@@ -20,7 +20,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^reset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^@botbotreset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
@@ -53,7 +53,7 @@ bot.dialog('/profile', [
 bot.dialog('/menu', [
     function (session) {
        session.sendTyping();
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','"+process.env.MICROSOFT_APP_ID+" Ask|Answer|cards|carousel|quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|cards|carousel|quit');
       
    },
    function (session, results) {
