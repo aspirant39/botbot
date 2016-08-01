@@ -60,11 +60,11 @@ bot.dialog('/menu', [
       temp=results.response.entity.slice(7,results.response.entity.length-1);
       temp=temp.trim()
         if (results.response && temp != 'quit') {
-            switch (results.response.entity) {
-                case '@botbot Ask':
+            switch (temp) {
+                case 'Ask':
                     session.beginDialog('/Ask');
                     break;
-                case '@botbot Answer':
+                case 'Answer':
                     session.beginDialog('/Answer');
                     break; 
             }
