@@ -58,7 +58,7 @@ bot.dialog('/menu', [
    },
    function (session, results) {
       if(results.response.entity.length>7){
-      temp=results.response.entity.slice(6,results.response.entity.length-1);
+      temp=results.response.entity.slice(7,results.response.entity.length-1);
       temp=temp.trim();}
       else{
          temp=results.response.entity;
