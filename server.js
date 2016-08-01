@@ -20,7 +20,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^@botbot reset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^reset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
@@ -52,7 +52,8 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|@botbot Answer|@botbot quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
+       session.sendTyping
    },
    function (session, results) {
       temp=results.response.entity.slice(7,results.response.entity.length-1);
