@@ -108,7 +108,7 @@ bot.dialog('/Ask', [
         if (results && results.response) {
             if(results.response=="umiilaw"){
                session.send("tsamba! hahahah")
-              
+               session.send('Result: %s', temp);
             }
             else{
                 session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
