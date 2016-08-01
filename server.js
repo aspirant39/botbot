@@ -1,6 +1,6 @@
 var builder = require('botbuilder');
 var restify = require('restify');
-
+var temp=""
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -55,7 +55,9 @@ bot.dialog('/menu', [
        builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
    },
    function (session, results) {
-        if (results.response && results.response.entity.trim().slice(6,results.response.entity.length-1) != 'quit') {
+      temp=results.response.entity.slice(7,results.response.entity.length-1);
+      temp=temp.trim();
+        if (results.response && temp != 'quit') {
             switch (results.response.entity.slice(8,results.response.entity.length-1)) {
                 case 'Ask':
                     session.beginDialog('/Ask');
