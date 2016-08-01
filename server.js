@@ -20,7 +20,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^reset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 3.1, resetCommand: /^reset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
@@ -52,14 +52,11 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|@botbot Answer|@botbot quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
    },
    function (session, results) {
-      temp=results.response.entity.slice(7,results.response.entity.length-1);
-      temp=temp.trim();
-      session.send('Result: %s', temp);
-        if (results.response && temp != 'quit') {
-            switch (results.response.entity.slice(8,results.response.entity.length-1)) {
+        if (results.response && results.response.entity != 'quit') {
+            switch (results.response.entity) {
                 case 'Ask':
                     session.beginDialog('/Ask');
                     break;
@@ -73,7 +70,7 @@ bot.dialog('/menu', [
             session.endDialog();
         } 
         else {
-             session.send('quit: %s', temp);
+           
         }
     },
     function (session, results) {
@@ -97,25 +94,25 @@ bot.dialog('/Ask', [
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
            
-        } else if(resutls.response.entity=='@botbot cancel') {
+        } else if(resutls.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
-          session.send('Ask: %s', temp);
+         
         }
     },
     function (session, results) {
         if (results && results.response) {
             if(results.response=="umiilaw"){
                session.send("tsamba! hahahah")
-               session.send('Result: %s', temp);
+             
             }
             else{
                 session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
                 
             }
             
-        } else if(results.response.entity=='@botbot cancel') {
+        } else if(results.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
@@ -147,11 +144,11 @@ bot.dialog('/Answer', [
                session.send("Ambot lang ui(facepalm)");
             }
             
-        } else if(results.response.entity=='@botbot cancel') {
+        } else if(results.response.entity=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
-             session.send('Answer: %s', temp);
+            
         }
     },
     function (session, results) {
