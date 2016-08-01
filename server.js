@@ -53,7 +53,7 @@ bot.dialog('/profile', [
 bot.dialog('/menu', [
     function (session) {
        session.sendTyping();
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|cards|quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|cards|carousel|quit');
       
    },
    function (session, results) {
@@ -76,6 +76,9 @@ bot.dialog('/menu', [
                case 'cards':
                     session.beginDialog('/cards');
                     break;
+               case 'carousel':
+                     session.beginDialog('/carousel');
+                     break;
             }
             }
         else {
