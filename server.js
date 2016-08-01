@@ -52,7 +52,7 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|@botbot Answer|@botbot quit');
    },
    function (session, results) {
       temp=results.response.entity.slice(7,results.response.entity.length-1);
