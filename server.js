@@ -95,10 +95,13 @@ bot.dialog('/Ask', [
                session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
-            else{
+            else if(results.response!='cancel'{
                session.send("taka lang man ka hahaha!(facepalm) utong ang tama na answer ui")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
+            else {
+            session.endDialog("You canceled.");
+        }
            
         } else if(resutls.response=='cancel') {
             session.endDialog("You canceled.");
@@ -113,10 +116,13 @@ bot.dialog('/Ask', [
                session.send("tsamba! hahahah")
              
             }
-            else{
+            else if(results.response!='cancel'){
                 session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
                 
             }
+               else {
+            session.endDialog("You canceled.");
+        }
             
         } else if(results.response=='cancel') {
             session.endDialog("You canceled.");
