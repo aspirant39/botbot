@@ -52,15 +52,15 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|@botbot Answer|@botbot quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
    },
    function (session, results) {
         if (results.response && results.response.entity != 'quit') {
             switch (results.response.entity) {
-                case 'Ask':
+                case '@botbot Ask':
                     session.beginDialog('/Ask');
                     break;
-                case 'Answer':
+                case '@botbot Answer':
                     session.beginDialog('/Answer');
                     break; 
 
