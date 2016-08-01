@@ -52,9 +52,9 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
-       session.sendTyping;
+       session.sendTyping();
        builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
-       session.sendTyping;
+      
    },
    function (session, results) {
       temp=results.response.entity.slice(7,results.response.entity.length-1);
@@ -75,6 +75,7 @@ bot.dialog('/menu', [
         }
     },
     function (session, results) {
+       session.send("Result: %s",temp);
         // The menu runs a loop until the user chooses to (quit).
         session.replaceDialog('/menu');
        }
