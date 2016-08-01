@@ -57,6 +57,7 @@ bot.dialog('/menu', [
    function (session, results) {
       temp=results.response.entity.slice(7,results.response.entity.length-1);
       temp=temp.trim();
+      session.send('Result: %s', temp);
         if (results.response && temp != 'quit') {
             switch (results.response.entity.slice(8,results.response.entity.length-1)) {
                 case 'Ask':
