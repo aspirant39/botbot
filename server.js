@@ -1,6 +1,6 @@
 var builder = require('botbuilder');
 var restify = require('restify');
-var temp=""
+var temp="";
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -70,7 +70,7 @@ bot.dialog('/menu', [
 
             }
         else {
-             session.send("good bye! (wave)")
+            session.send("good bye! (wave)");
             session.endDialog();
         }
     },
