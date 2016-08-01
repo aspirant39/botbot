@@ -67,7 +67,7 @@ bot.dialog('/menu', [
                     break; 
 
             }
-        }else if(results.response=='quit'){
+        }else if(temp!='quit'){
             session.send("good bye! (wave)")
             session.endDialog();
         } 
