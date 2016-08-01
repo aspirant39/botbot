@@ -97,7 +97,7 @@ bot.dialog('/Ask', [
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
            
-        } else if(resutls.response.entity=='cancel') {
+        } else if(resutls.response.entity=='@botbot cancel') {
             session.endDialog("You canceled.");
         }
          else {
@@ -115,7 +115,7 @@ bot.dialog('/Ask', [
                 
             }
             
-        } else if(results.response.entity=='cancel') {
+        } else if(results.response.entity=='@botbot cancel') {
             session.endDialog("You canceled.");
         }
          else {
@@ -147,7 +147,7 @@ bot.dialog('/Answer', [
                session.send("Ambot lang ui(facepalm)");
             }
             
-        } else if(results.response.entity=='cancel') {
+        } else if(results.response.entity=='@botbot cancel') {
             session.endDialog("You canceled.");
         }
          else {
