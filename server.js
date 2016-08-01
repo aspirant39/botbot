@@ -55,7 +55,9 @@ bot.dialog('/menu', [
        builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|@botbot Answer|@botbot quit');
    },
    function (session, results) {
-        if (results.response && results.response.entity != 'quit') {
+      temp=results.response.entity.slice(7,results.response.entity.length-1);
+      temp=temp.trim()
+        if (results.response && temp != 'quit') {
             switch (results.response.entity) {
                 case '@botbot Ask':
                     session.beginDialog('/Ask');
