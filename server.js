@@ -61,10 +61,10 @@ bot.dialog('/menu', [
       temp=temp.trim();
         if (results.response && temp != 'quit') {
             switch (temp) {
-                case 1:
+                case 'Ask':
                     session.beginDialog('/Ask');
                     break;
-                case 2:
+                case 'Answer':
                     session.beginDialog('/Answer');
                     break; 
             }
