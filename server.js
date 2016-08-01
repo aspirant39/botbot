@@ -53,7 +53,7 @@ bot.dialog('/profile', [
 bot.dialog('/menu', [
     function (session) {
        session.sendTyping();
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','@botbot Ask|Answer|cards|carousel|quit');
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','"+process.env.MICROSOFT_APP_ID+" Ask|Answer|cards|carousel|quit');
       
    },
    function (session, results) {
