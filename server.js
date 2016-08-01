@@ -52,8 +52,9 @@ bot.dialog('/profile', [
 
 bot.dialog('/menu', [
     function (session) {
+       session.sendTyping;
        builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
-       session.sendTyping
+       
    },
    function (session, results) {
       temp=results.response.entity.slice(7,results.response.entity.length-1);
