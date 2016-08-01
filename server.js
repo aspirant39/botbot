@@ -73,7 +73,7 @@ bot.dialog('/menu', [
             session.endDialog();
         } 
         else {
-            
+             session.send('quit: %s', temp);
         }
     },
     function (session, results) {
@@ -101,7 +101,7 @@ bot.dialog('/Ask', [
             session.endDialog("You canceled.");
         }
          else {
-         
+          session.send('Ask: %s', temp);
         }
     },
     function (session, results) {
@@ -151,7 +151,7 @@ bot.dialog('/Answer', [
             session.endDialog("You canceled.");
         }
          else {
-            
+             session.send('Answer: %s', temp);
         }
     },
     function (session, results) {
