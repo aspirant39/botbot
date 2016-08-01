@@ -160,8 +160,11 @@ bot.dialog('/Answer', [
                  session.send("Version 007(facepalm)");
                 
             }
-            else{
+            else if(results.response!='cancel'){
                session.send("Ambot lang ui(facepalm)");
+            }
+            else{
+               session.endDialog("You canceled.");
             }
             
         } else if(results.response=='cancel') {
@@ -210,6 +213,7 @@ bot.dialog('/cards', [
         session.endDialog(msg);
     }
 ]);
+
 bot.dialog('/carousel', [
     function (session) {
         session.send("You can pass a custom message to Prompts.choice() that will present the user with a carousel of cards to select from. Each card can even support multiple actions.");
