@@ -67,7 +67,7 @@ bot.dialog('/menu', [
                 case '@botbot Answer':
                     session.beginDialog('/Answer');
                     break; 
-
+            }
             }
         else {
             session.send("good bye! (wave)");
