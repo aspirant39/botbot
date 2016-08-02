@@ -95,7 +95,7 @@ bot.dialog('/menu', [
        }
 ]);
 bot.dialog('/Ask', [
-    function (session) {
+    function (session,args) {
         session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'.");
         builder.Prompts.text(session, "\n\nAno sa Tagalog ang teeth?");
     },
