@@ -20,7 +20,7 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^@botbotreset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^botbotreset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
