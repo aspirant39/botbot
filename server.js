@@ -74,7 +74,7 @@ bot.dialog('/actions', [
 ]);
 bot.dialog('/Ask', [
     function (session,args) {
-        session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'. %s",args.data);
+        session.endDialog("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'. %s",args.data);
     }
 ]);
 bot.beginDialogAction('Ask', '/Ask');
