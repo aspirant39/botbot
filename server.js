@@ -75,54 +75,7 @@ bot.dialog('/actions', [
 bot.dialog('/Ask', [
     function (session,args) {
         session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'. %s",args.data);
-        builder.Prompts.text(session, "\n\nAno sa Tagalog ang teeth?");
-    },
-    function (session, results) {
-        if (results && results.response) {
-            if (results.response=='utong'){
-               session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
-               builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
-            }
-            else if(results.response!='cancel'){
-               session.send("taka lang man ka hahaha!(facepalm) utong ang tama na answer ui")
-               builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
-            }
-            else {
-            session.endDialog("You canceled.");
-        }
-           
-        } else if(resutls.response=='cancel') {
-            session.endDialog("You canceled.");
-        }
-         else {
-         
-        }
-    },
-    function (session, results) {
-        if (results && results.response) {
-            if(results.response=="umiilaw"){
-               session.send("tsamba! hahahah")
-             
-            }
-            else if(results.response!='cancel'){
-                session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
-                
-            }
-           else {
-            session.endDialog("You canceled.");
-        }
-            
-        } else if(results.response=='cancel') {
-            session.endDialog("You canceled.");
-        }
-         else {
-            
-        }
-    },
-     function (session, results) {
-        // The menu runs a loop until the user chooses to (quit).
-        session.replaceDialog('/Ask');
-       }
+    }
 ]);
 bot.beginDialogAction('Ask', '/Ask');
 
