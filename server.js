@@ -123,7 +123,7 @@ bot.dialog('/actions', [
     }
 ]);
 
-bot.beginDialogAction('ask', '/ask'); 
+bot.beginDialogAction('@botbot ask', '/ask'); 
 var fs = require('fs');
 var request = require('request');
 
