@@ -313,7 +313,7 @@ bot.dialog('/actions', [
 ]);
 bot.dialog('/weather', [
     function (session, args) {
-        session.endDialog("The weather in %s is 71 degrees and raining.", args.data);
+        session.endDialog("The weather in %s is 71 degrees and raining. %s", args.data,session.userData.name);
     }
 ]);
 bot.beginDialogAction('weather', '/weather');
