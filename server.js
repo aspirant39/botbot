@@ -27,11 +27,11 @@ bot.dialog('/', intents);
 intents.onDefault([
     function (session, args, next) {
        session.send("Type and send - Ask | Answer | cancel | quit");
-       session.beginDialog('/profile');
+    
         if (!session.userData.name) {
             session.beginDialog('/profile');
         } else {
-            next();
+              session.beginDialog('/profile');
         }
     },
     function (session, results) {
