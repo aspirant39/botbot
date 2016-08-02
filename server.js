@@ -310,11 +310,7 @@ bot.dialog('/actions', [
         session.endDialog("The 'Current Weather' button on the card above can be pressed at any time regardless of where the user is in the conversation with the bot. The bot can even show the weather after the conversation has ended.");
     }
 ]);
-bot.dialog('/weather', [
-    function (session, args) {
-        session.endDialog("The weather in %s is 71 degrees and raining. %s", args.data,session.userData.name);
-    }
-]);
+
 bot.beginDialogAction('Ask', '/Ask');
 
 var fs = require('fs');
