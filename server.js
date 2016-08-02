@@ -20,23 +20,21 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 var intents = new builder.IntentDialog();
-bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^botbotreset/i }));
+bot.use(builder.Middleware.dialogVersion({ version: 3.0, resetCommand: /^@botbotreset/i }));
 bot.use(downloadFile(connector));
 bot.dialog('/', intents);
 
 intents.onDefault([
     function (session, args, next) {
-       session.send("Type and send - Ask | Answer | cancel | quit");
-    
         if (!session.userData.name) {
             session.beginDialog('/profile');
         } else {
-              session.beginDialog('/profile');
+              next();
         }
     },
     function (session, results) {
         session.send('Hello %s!', session.userData.name);
-        session.beginDialog('/menu');
+        session.beginDialog('/actions');
         
     }
 ]);
@@ -291,20 +289,20 @@ bot.dialog('/carousel', [
 ]);
 bot.dialog('/actions', [
     function (session) { 
-        session.send("Bots can register global actions, like the 'help' & 'goodbye' actions, that can respond to user input at any time. You can even bind actions to buttons on a card.");
+        session.send("BOTBOT!");
 
         var msg = new builder.Message(session)
             .textFormat(builder.TextFormat.xml)
             .attachments([
                 new builder.HeroCard(session)
-                    .title("Hero Card")
-                    .subtitle("Space Needle")
-                    .text("The <b>Space Needle</b> is an observation tower in Seattle, Washington, a landmark of the Pacific Northwest, and an icon of Seattle.")
+                    .title("Menu)
+                    .subtitle("choose action")
+                    .text("What would you like me to do?")
                     .images([
                         builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seattlenighttimequeenanne.jpg/320px-Seattlenighttimequeenanne.jpg")
                     ])
                     .buttons([
-                        builder.CardAction.dialogAction(session, "weather", "Seattle, WA", "Current Weather")
+                        builder.CardAction.dialogAction(session, "Ask", "Ask", "Ask")
                     ])
             ]);
         session.send(msg);
@@ -317,7 +315,7 @@ bot.dialog('/weather', [
         session.endDialog("The weather in %s is 71 degrees and raining. %s", args.data,session.userData.name);
     }
 ]);
-bot.beginDialogAction('weather', '/weather');
+bot.beginDialogAction('Ask', '/Ask');
 
 var fs = require('fs');
 var request = require('request');
