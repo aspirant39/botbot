@@ -34,7 +34,7 @@ intents.onDefault([
     },
     function (session, results) {
         session.send('Hello %s!', session.userData.name);
-      
+        session.beginDialog('/actions');
         
     }
 ]);
