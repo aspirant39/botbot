@@ -47,7 +47,43 @@ bot.dialog('/profile', [
         session.endDialog();
     }
 ]);
-bot.dialog('/ask', [
+bot.dialog('/menu', [
+    function (session) {
+       session.sendTyping();
+       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
+      
+   },
+   function (session, results) {
+      if(results.response.entity.length>7){
+      temp=results.response.entity.slice(7,results.response.entity.length-1);
+      temp=temp.trim();
+      session.send('Hello %s', results.response.entity.indexof("@botbot"));
+      }
+      else{
+         temp=results.response.entity;
+      }
+        if (results.response && temp != 'quit') {
+            switch (temp) {
+                case 'Ask':
+                    session.beginDialog('/Ask');
+                    break;
+                case 'Answer':
+                    session.beginDialog('/Answer');
+                    break;
+            }
+            }
+        else {
+            session.send("good bye! (wave)");
+            session.endDialog();
+        }
+    },
+    function (session, results) {
+       session.send("Result: %s",temp);
+        // The menu runs a loop until the user chooses to (quit).
+        session.replaceDialog('/menu');
+       }
+]);
+bot.dialog('/Ask', [
     function (session) {
         session.send("i will ask you some questions . Just follow the prompts and you can quit at any time by saying 'cancel'.");
         builder.Prompts.text(session, "\n\nAno sa Tagalog ang teeth?");
@@ -96,34 +132,45 @@ bot.dialog('/ask', [
     },
      function (session, results) {
         // The menu runs a loop until the user chooses to (quit).
-        session.replaceDialog('/ask');
+        session.replaceDialog('/Ask');
        }
 ]);
-bot.dialog('/actions', [
-    function (session) { 
-        session.send("Bots can register global actions, like the 'help' & 'goodbye' actions, that can respond to user input at any time. You can even bind actions to buttons on a card.");
 
-        var msg = new builder.Message(session)
-            .textFormat(builder.TextFormat.xml)
-            .attachments([
-                new builder.HeroCard(session)
-                    .title("Hero Card")
-                    .subtitle("Space Needle")
-                    .text("The <b>Space Needle</b> is an observation tower in Seattle, Washington, a landmark of the Pacific Northwest, and an icon of Seattle.")
-                    .images([
-                        builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seattlenighttimequeenanne.jpg/320px-Seattlenighttimequeenanne.jpg")
-                    ])
-                    .buttons([
-                        builder.CardAction.dialogAction(session,"ask", "Ask", "Ask")
-                    ])
-            ]);
-        session.send(msg);
-
-        session.endDialog("The 'Current Weather' button on the card above can be pressed at any time regardless of where the user is in the conversation with the bot. The bot can even show the weather after the conversation has ended.");
-    }
+bot.dialog('/Answer', [
+    function (session) {
+        session.send("Ask me anything. Just follow the prompts and you can quit at any time by saying 'cancel'.");
+        builder.Prompts.text(session, "\n\nwhat would you like to ask me?");
+    },
+    function (session, results) {
+        if (results && results.response) {
+            if(results.response=='Author'){
+                 session.send("Si kuan ay! Si Ralph gud (facepalm)");
+              
+            }
+            else if(results.response=='Version'){
+                 session.send("Version 007(facepalm)");
+                
+            }
+            else if(results.response!='cancel'){
+               session.send("Ambot lang ui(facepalm)");
+            }
+            else{
+               session.endDialog("You canceled.");
+            }
+            
+        } else if(results.response=='cancel') {
+            session.endDialog("You canceled.");
+        }
+         else {
+            
+        }
+    },
+    function (session, results) {
+        // The menu runs a loop until the user chooses to (quit).
+        session.replaceDialog('/Answer');
+       }
 ]);
 
-bot.beginDialogAction('ask', '/ask'); 
 var fs = require('fs');
 var request = require('request');
 
