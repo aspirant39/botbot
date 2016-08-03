@@ -114,10 +114,10 @@ bot.dialog('/actions', [
                         builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seattlenighttimequeenanne.jpg/320px-Seattlenighttimequeenanne.jpg")
                     ])
                     .buttons([
-                        builder.CardAction.dialogAction(session, "ask", "Ask", "Ask").slice(6,10).trim()
+                        builder.CardAction.dialogAction(session, "ask", "Ask", "Ask")
                     ])
             ]);
-        session.send(msg);
+        session.send(msg.slice(6,10).trim());
 
         session.endDialog("The 'Current Weather' button on the card above can be pressed at any time regardless of where the user is in the conversation with the bot. The bot can even show the weather after the conversation has ended.");
     }
