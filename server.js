@@ -114,7 +114,6 @@ bot.dialog('/actions', [
                         builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seattlenighttimequeenanne.jpg/320px-Seattlenighttimequeenanne.jpg")
                     ])
                     .buttons([
-                        session.reset();
                         builder.CardAction.dialogAction(session,"ask", "Ask", "Ask")
                     ])
             ]);
