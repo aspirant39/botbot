@@ -60,7 +60,7 @@ bot.dialog('/menu', [
       session.send('Hello %s', results.response.indexof("@botbot"));
       }
       else{
-         temp=results.response.entity;
+         temp=results.response;
       }
         if (results.response && temp != 'quit') {
             switch (temp) {
