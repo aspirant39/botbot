@@ -114,7 +114,7 @@ bot.dialog('/actions', [
                         builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Seattlenighttimequeenanne.jpg/320px-Seattlenighttimequeenanne.jpg")
                     ])
                     .buttons([
-                        builder.CardAction.dialogAction(session, "ask", "ASK", "Ask")
+                        builder.CardAction.dialogAction(session, "ask", "ask", "Ask")
                     ])
             ]);
         session.send(msg);
@@ -123,7 +123,7 @@ bot.dialog('/actions', [
     }
 ]);
 
-bot.beginDialogAction('@botbot ask', '/ask'); 
+bot.beginDialogAction('ask', '/ask'); 
 var fs = require('fs');
 var request = require('request');
 
