@@ -43,7 +43,7 @@ bot.dialog('/profile', [
         builder.Prompts.text(session, 'Hi! before anything else, What is your name?');
     },
     function (session, results) {
-        session.userData.name = results.response;
+        session.userData.name = results.response.slice(62,results.response.length);
         session.endDialog();
     }
 ]);
@@ -54,7 +54,7 @@ bot.dialog('/menu', [
       
    },
    function (session, results) {
-      if(results.response.length>7){
+      if(results.response.length>62){
       temp=results.response.slice(62,results.response.length);
       temp=temp.trim();
       }
@@ -77,7 +77,6 @@ bot.dialog('/menu', [
         }
     },
     function (session, results) {
-       session.send("Result: %s",temp);
         // The menu runs a loop until the user chooses to (quit).
         session.replaceDialog('/menu');
        }
@@ -88,12 +87,19 @@ bot.dialog('/Ask', [
         builder.Prompts.text(session, "\n\nAno sa Tagalog ang teeth?");
     },
     function (session, results) {
-        if (results && results.response) {
-            if (results.response=='utong'){
+       if(results.response.length>62){
+      temp=results.response.slice(62,results.response.length);
+      temp=temp.trim();
+      }
+      else{
+         temp=results.response;
+      }
+        if (results && temp) {
+            if (temp=='utong'){
                session.send("bright man diay ka haha ikaw nalang pag ako!(facepalm)")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
-            else if(results.response!='cancel'){
+            else if(temp!='cancel'){
                session.send("taka lang man ka hahaha!(facepalm) utong ang tama na answer ui")
                builder.Prompts.text(session, "\n\nKung ang light ay ilaw, ano naman ang lightning?");
             }
@@ -101,7 +107,7 @@ bot.dialog('/Ask', [
             session.endDialog("You canceled.");
         }
            
-        } else if(resutls.response=='cancel') {
+        } else if(temp=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
@@ -109,12 +115,19 @@ bot.dialog('/Ask', [
         }
     },
     function (session, results) {
-        if (results && results.response) {
-            if(results.response=="umiilaw"){
+       if(results.response.length>62){
+      temp=results.response.slice(62,results.response.length);
+      temp=temp.trim();
+      }
+      else{
+         temp=results.response;
+      }
+        if (results && temp) {
+            if(temp=="umiilaw"){
                session.send("tsamba! hahahah")
              
             }
-            else if(results.response!='cancel'){
+            else if(temp!='cancel'){
                 session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
                 
             }
@@ -122,7 +135,7 @@ bot.dialog('/Ask', [
             session.endDialog("You canceled.");
         }
             
-        } else if(results.response=='cancel') {
+        } else if(temp=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
@@ -141,23 +154,30 @@ bot.dialog('/Answer', [
         builder.Prompts.text(session, "\n\nwhat would you like to ask me?");
     },
     function (session, results) {
-        if (results && results.response) {
-            if(results.response=='Author'){
+        if(results.response.length>62){
+      temp=results.response.slice(62,results.response.length);
+      temp=temp.trim();
+      }
+      else{
+         temp=results.response;
+      }
+        if (results && temp) {
+            if(temp=='Author'){
                  session.send("Si kuan ay! Si Ralph gud (facepalm)");
               
             }
-            else if(results.response=='Version'){
+            else if(temp=='Version'){
                  session.send("Version 007(facepalm)");
                 
             }
-            else if(results.response!='cancel'){
+            else if(temp!='cancel'){
                session.send("Ambot lang ui(facepalm)");
             }
             else{
                session.endDialog("You canceled.");
             }
             
-        } else if(results.response=='cancel') {
+        } else if(temp=='cancel') {
             session.endDialog("You canceled.");
         }
          else {
