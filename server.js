@@ -50,14 +50,14 @@ bot.dialog('/profile', [
 bot.dialog('/menu', [
     function (session) {
        session.sendTyping();
-       builder.Prompts.text(session,'\n\nWhat would you like me to do? Choices: Ask|Answer|quit:');
+       builder.Prompts.text(session,'\n\nWhat would you like me to do? Choices: Ask |Answer |quit :');
       
    },
    function (session, results) {
       if(results.response.length>7){
       temp=results.response.slice(7,results.response.length-1);
       temp=temp.trim();
-      session.send('Hello %s', results.response.indexof("@botbot"));
+     
       }
       else{
          temp=results.response;
