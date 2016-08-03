@@ -49,12 +49,12 @@ bot.dialog('/profile', [
 ]);
 bot.dialog('/menu', [
     function (session) {
-       session.sendTyping();
+       session.sendTyping("sddsdsd");
        builder.Prompts.text(session,'\n\nWhat would you like me to do? Choices: Ask |Answer |quit :');
       
    },
    function (session, results) {
-      session.send("here: "+results.response+"length :"+results.response.length);
+      session.send("here: "+results.response+"length :"+results.response.length+"slice "+results.response.slice(7,11));
       if(results.response.length>7){
       temp=results.response.slice(7,11);
       temp=temp.trim();
