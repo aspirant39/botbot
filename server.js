@@ -69,6 +69,9 @@ bot.dialog('/menu', [
                 case 'Answer':
                     session.beginDialog('/Answer');
                     break;
+                 default:
+                    session.send("(headbang)");
+                    break;
             }
             }
         else {
