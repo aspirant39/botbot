@@ -50,7 +50,7 @@ bot.dialog('/profile', [
 bot.dialog('/menu', [
     function (session) {
        session.sendTyping();
-       builder.Prompts.choice(session,'\n\nWhat would you like me to do?','Ask|Answer|quit');
+       builder.Prompts.text(session,'\n\nWhat would you like me to do? Choices: Ask|Answer|quit:');
       
    },
    function (session, results) {
