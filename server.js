@@ -54,10 +54,10 @@ bot.dialog('/menu', [
       
    },
    function (session, results) {
-      if(results.response.entity.length>7){
-      temp=results.response.entity.slice(7,results.response.entity.length-1);
+      if(results.response.length>7){
+      temp=results.response.slice(7,results.response.length-1);
       temp=temp.trim();
-      session.send('Hello %s', results.response.entity.indexof("@botbot"));
+      session.send('Hello %s', results.response.indexof("@botbot"));
       }
       else{
          temp=results.response.entity;
