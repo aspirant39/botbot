@@ -127,11 +127,11 @@ bot.dialog('/Ask', [
       }
         if (results && temp) {
             if(temp=="umiilaw"){
-               session.send("tsamba! hahahah")
+               session.send("tsamba!(sarcastic)")
              
             }
             else if(temp!='cancel'){
-                session.send("taka lang man ka hahaha!(facepalm) eh di umiilaw")
+                session.send("taka lang man ka hahaha!(facepalm)(n) eh di umiilaw")
                 
             }
            else {
